@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reaction Tester</title>
+	<style type="text/css">
+		#boxes{
+			height: 200px;
+			width: 200px;
+			background-color: #BABABC;
+			position: relative;
+			top: 100px;
+			left: 50px;
+			visibility: hidden;
+
+
+
+		}
+		#message
+		{
+			position: relative;
+			top: 96px;
+    		left: 54px;
+    		text-decoration: none;
+    		font-weight: bold;
+		}
+
+
+
+	</style>
+
+
+
+</head>
+
+
+
+<body>
+
+		<h1>Test your reaction here </h1>
+		<h3>Click on the boxes as quickly as you can</h3>
+		<h4 id= "time">Your time : </h4>
+		<button id="start" onclick="myFunction1(),timeOut()">Click to start the game !!</button>
+		<div id="boxes" onclick="myFunction()"><p id="message">Shoot Me!!</p></div>
+
+		
+
+
+
+<script>
+		var count=0;
+		var startTime;
+		var flag=false;
+function myFunction() {
+  
+  if(flag==true){
+  var topPosition=Math.floor((Math.random()*250));
+  var leftPosition=Math.floor((Math.random()*75));
+  document.getElementById("boxes").style.top=topPosition+"px";
+  document.getElementById("boxes").style.left=leftPosition+"%";
+  var r = Math.floor((Math.random()*255));
+  var g = Math.floor((Math.random()*255));
+  var b = Math.floor((Math.random()*255));
+  document.getElementById("boxes").style.backgroundColor="rgb("+r+", "+g+", "+b+")"
+  var endTime=new Date().getTime();
+  var timeTaken=(endTime-startTime)/1000;
+  document.getElementById("time").innerHTML="Your time : "+timeTaken+" sec";
+  var a=Math.floor((Math.random()*2));
+  if(a==0)
+  {
+  	document.getElementById("boxes").style.borderRadius="50%";
+  }
+  else
+  {
+  	document.getElementById("boxes").style.borderRadius="0%";
+  }
+  startTime=endTime;
+  var r1 = Math.floor((Math.random()*255));
+  var g1 = Math.floor((Math.random()*255));
+  var b1 = Math.floor((Math.random()*255));
+  document.getElementById("message").style.color="rgb("+r1+", "+g1+", "+b1+")"
+  count++;
+}
+else
+{
+	alert("Press the button to start the game");
+}
+}
+
+function myFunction1()
+{
+	flag=true;
+	startTime = new Date().getTime();
+	document.getElementById("boxes").style.visibility="visible";
+	setTimeout(function(){
+	var r=confirm("Times up!! Your Score is "+ count);
+	if(r==true)
+	{
+		flag=false;
+	}
+	else
+	{
+		flag=false;
+	}
+	count=0;
+	document.getElementById("time").innerHTML="Your time : "},60000);
+}
+
+</script>
+
+</body>
+</html>
